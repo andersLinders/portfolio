@@ -51,7 +51,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
       >
         <div className={styles.header}>
           <p id={titleId} className={styles.greeting}>
-            Hi!
+            Hello!
           </p>
           <button
             ref={closeRef}
