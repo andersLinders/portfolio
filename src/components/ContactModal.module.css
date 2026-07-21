@@ -1,0 +1,164 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-page-x);
+  pointer-events: none;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  border: none;
+  /* Must stay transparent so Figma Glass samples the live page backdrop */
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.dialog {
+  width: 304px;
+  max-width: 100%;
+  pointer-events: auto;
+  animation: riseIn 320ms var(--ease-out-expo) both;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  width: 100%;
+  /* Figma padding: 16 / 20 / 20 / 20 */
+  padding: 16px 20px 20px;
+  color: #ffffff;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 22px;
+  width: 100%;
+}
+
+.greeting {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 58px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.closeIcon {
+  width: 16px;
+  height: 16px;
+  transform: rotate(-135deg) scaleY(-1);
+}
+
+.message {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 22px;
+}
+
+.callButton,
+.emailButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 123px;
+  height: 32px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-align: center;
+}
+
+.callButton {
+  border-radius: 22px;
+  background: #d9d9d9;
+  color: #3d3f4d;
+  box-shadow:
+    -2px 2px 4.3px rgba(0, 0, 0, 0.1),
+    inset 1px -1px 2px rgba(0, 0, 0, 0.05),
+    inset -1px 1px 2px rgba(171, 157, 157, 0.25);
+}
+
+.emailButton {
+  border-radius: 52px;
+  background: #3d3f4d;
+  color: #ffffff;
+  box-shadow:
+    -2px 2px 4.3px rgba(0, 0, 0, 0.1),
+    inset -1px 1px 2px rgba(171, 157, 157, 0.25);
+}
+
+.callButton:hover {
+  filter: brightness(0.97);
+}
+
+.emailButton:hover {
+  filter: brightness(1.08);
+}
+
+.callButton:focus-visible,
+.emailButton:focus-visible,
+.close:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog {
+    animation: none;
+  }
+}

@@ -1,0 +1,203 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.layerActive {
+  opacity: 1;
+  z-index: 1;
+}
+
+.layerIncoming {
+  opacity: 1;
+  z-index: 2;
+}
+
+.layerOutgoing {
+  opacity: 1;
+  z-index: 1;
+}
+
+.enterFromRight {
+  animation: enterFromRight var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.enterFromLeft {
+  animation: enterFromLeft var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.enterFromDown {
+  animation: enterFromDown var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.enterFromUp {
+  animation: enterFromUp var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.exitToLeft {
+  animation: exitToLeft var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.exitToRight {
+  animation: exitToRight var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.exitToUp {
+  animation: exitToUp var(--duration-bg) var(--ease-out-expo) both;
+}
+
+.exitToDown {
+  animation: exitToDown var(--duration-bg) var(--ease-out-expo) both;
+}
+
+@keyframes enterFromRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes enterFromDown {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes enterFromUp {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes exitToUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes exitToDown {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: var(--image-position, center center);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-image: var(--scrim);
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .image {
+    object-position: var(--image-position-mobile, center top);
+  }
+
+  .scrim {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.15) 28%,
+        rgba(0, 0, 0, 0.2) 55%,
+        rgba(0, 0, 0, 0.72) 100%
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enterFromRight,
+  .enterFromLeft,
+  .enterFromDown,
+  .enterFromUp,
+  .exitToLeft,
+  .exitToRight,
+  .exitToUp,
+  .exitToDown {
+    animation: fadeSwap var(--duration-bg) var(--ease-out-soft) both;
+  }
+
+  @keyframes fadeSwap {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .exitToLeft,
+  .exitToRight,
+  .exitToUp,
+  .exitToDown {
+    animation-name: fadeOut;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}

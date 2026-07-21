@@ -1,0 +1,102 @@
+.list {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0.25rem var(--space-page-x) 2rem;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .subGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    border-radius: 4pt;
+    background: #1a1a1a;
+    isolation: isolate;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+  }
+
+  .mainCard {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .subTile {
+    aspect-ratio: 1 / 1;
+  }
+
+  .tile:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 3px;
+  }
+
+  .image {
+    object-fit: cover;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 40%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+    pointer-events: none;
+  }
+
+  .label {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .company {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  .title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-variation-settings: "wght" 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .mainCard .title {
+    font-size: 1.15rem;
+  }
+}
