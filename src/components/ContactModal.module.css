@@ -13,136 +13,105 @@
   position: absolute;
   inset: 0;
   border: none;
-  /* Must stay transparent so Figma Glass samples the live page backdrop */
-  background: transparent;
+  background: rgba(0, 0, 0, 0.28);
   cursor: pointer;
   pointer-events: auto;
 }
 
 .dialog {
-  width: 304px;
-  max-width: 100%;
-  pointer-events: auto;
-  animation: riseIn 320ms var(--ease-out-expo) both;
-}
-
-.inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 18px;
-  width: 100%;
-  /* Figma padding: 16 / 20 / 20 / 20 */
+  width: 304px;
+  max-width: 100%;
   padding: 16px 20px 20px;
-  color: #ffffff;
+  border-radius: 22px;
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+  animation: riseIn 320ms var(--ease-out-expo) both;
 }
 
 .header {
-  position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  min-height: 22px;
+  gap: 12px;
   width: 100%;
+  min-height: 18px;
 }
 
 .greeting {
   margin: 0;
   font-size: 18px;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0;
-  color: #ffffff;
+  font-weight: 700;
+  line-height: 18px;
+  color: #000000;
 }
 
 .close {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   padding: 0;
   border: none;
-  border-radius: 58px;
-  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  background: transparent;
+  color: #000000;
   cursor: pointer;
 }
 
 .close:hover {
-  background: rgba(255, 255, 255, 0.28);
+  opacity: 0.55;
 }
 
-.closeIcon {
-  width: 16px;
-  height: 16px;
-  transform: rotate(-135deg) scaleY(-1);
+.closeGlyph {
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  transform: none;
 }
 
 .message {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0;
-  color: #ffffff;
+  line-height: 1.4;
+  color: #000000;
 }
 
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 22px;
-}
-
-.callButton,
 .emailButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 123px;
-  height: 32px;
+  width: 100%;
+  height: 36px;
   flex-shrink: 0;
+  border-radius: 52px;
+  background: #000000;
+  color: #ffffff;
   font-size: 12px;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 0;
   text-decoration: none;
   text-align: center;
 }
 
-.callButton {
-  border-radius: 22px;
-  background: #d9d9d9;
-  color: #3d3f4d;
-  box-shadow:
-    -2px 2px 4.3px rgba(0, 0, 0, 0.1),
-    inset 1px -1px 2px rgba(0, 0, 0, 0.05),
-    inset -1px 1px 2px rgba(171, 157, 157, 0.25);
-}
-
-.emailButton {
-  border-radius: 52px;
-  background: #3d3f4d;
-  color: #ffffff;
-  box-shadow:
-    -2px 2px 4.3px rgba(0, 0, 0, 0.1),
-    inset -1px 1px 2px rgba(171, 157, 157, 0.25);
-}
-
-.callButton:hover {
-  filter: brightness(0.97);
-}
-
 .emailButton:hover {
-  filter: brightness(1.08);
+  opacity: 0.88;
 }
 
-.callButton:focus-visible,
 .emailButton:focus-visible,
 .close:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline: 2px solid rgba(0, 0, 0, 0.45);
   outline-offset: 3px;
 }
 
@@ -151,6 +120,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

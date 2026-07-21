@@ -35,7 +35,7 @@
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 25px;
   max-width: var(--section-text-width);
 }
 
@@ -143,6 +143,7 @@
   .copy {
     max-width: none;
     order: 1;
+    gap: 1rem;
   }
 
   .media {

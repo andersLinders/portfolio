@@ -89,18 +89,6 @@ export const projects: Project[] = [
     }),
     subItems: [
       {
-        id: "monetization",
-        label: "Monetization",
-        href: "/work/meta/monetization",
-        image: "/images/meta-avatar-portrait.png",
-        imagePosition: "center center",
-        imagePositionMobile: "center 30%",
-        content: pageContent("Monetization", {
-          blurb:
-            "Systems that enable users to purchase in-game items and for creators to publish in-game items. Meta Credits were developed as a token that could be purchased for cash and exchanged for digital goods.",
-        }),
-      },
-      {
         id: "gamification",
         label: "Gamification",
         href: "/work/meta/gamification",
@@ -112,6 +100,18 @@ export const projects: Project[] = [
             "Gamification systems rewarded users for spending time in the metaverse. Users were rewarded with points and digital goods from Meta as well as content creators. Meta points were introduced as an earnable token that could be exchanged for digital goods.",
           skills:
             "Gamification, Creator tools, live events, live ops, digital goods",
+        }),
+      },
+      {
+        id: "monetization",
+        label: "Monetization",
+        href: "/work/meta/monetization",
+        image: "/images/meta-avatar-portrait.png",
+        imagePosition: "center center",
+        imagePositionMobile: "center 30%",
+        content: pageContent("Monetization", {
+          blurb:
+            "Systems that enable users to purchase in-game items and for creators to publish in-game items. Meta Credits were developed as a token that could be purchased for cash and exchanged for digital goods.",
         }),
       },
       {
