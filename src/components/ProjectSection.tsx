@@ -33,7 +33,7 @@ export function ProjectSection({
           <p className={styles.blurb}>{section.blurb}</p>
 
           {section.tags.length > 0 ? (
-            <ul className={styles.tags} aria-label="Filter by surface">
+            <ul className={styles.tags} aria-label="Filter by platform">
               {section.tags.map((tag) => {
                 const selected = activeFilters.includes(tag);
                 return (

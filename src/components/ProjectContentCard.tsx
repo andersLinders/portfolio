@@ -17,7 +17,7 @@ export function ProjectContentCard({ content }: ProjectContentCardProps) {
         <div className={styles.body}>
           <p className={styles.blurb}>{content.blurb}</p>
           <p className={styles.meta}>
-            <span className={styles.metaLabel}>Surfaces:</span>
+            <span className={styles.metaLabel}>Platforms:</span>
             <br />
             {content.surfaces}
           </p>

@@ -151,7 +151,7 @@ export function PortfolioShell() {
             aria-expanded={openMenu === "filter"}
             aria-controls="portfolio-filters"
           >
-            Surfaces
+            Platforms
             {filtersActive ? (
               <span className={styles.filterCount}>
                 {activeFilters.length}
@@ -209,7 +209,7 @@ export function PortfolioShell() {
             id="portfolio-filters"
             className={styles.filterBar}
             role="group"
-            aria-label="Filter by surface"
+            aria-label="Filter by platform"
           >
             <ul className={styles.filterTags}>
               {allTags.map((tag) => {

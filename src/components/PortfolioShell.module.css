@@ -31,10 +31,28 @@
   left: 0;
   right: 0;
   z-index: 3;
-  display: flex;
-  align-items: flex-start;
-  gap: 1.75rem;
-  padding: var(--space-header-top) max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2)) 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  column-gap: 1.75rem;
+  padding: var(--space-header-top) max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2)) 0.85rem;
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(
+      ellipse 55% 45% at 92% 8%,
+      rgba(246, 0, 255, 0.12),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 6% 12%,
+      rgba(0, 128, 255, 0.1),
+      transparent 70%
+    );
+  /* Match the fixed atmosphere slice at the top of the viewport.
+     Avoid background-attachment: fixed — transforms break it and cause a hard seam. */
+  background-size: 100vw 100vh;
+  background-position: top left;
+  background-repeat: no-repeat;
   transform: translate3d(0, 0, 0);
   transition: transform 320ms var(--ease-out-soft);
   pointer-events: none;
@@ -56,7 +74,7 @@
 }
 
 .brand {
-  margin-right: auto;
+  justify-self: start;
   font-size: var(--font-brand-size);
   font-weight: 700;
   line-height: normal;
@@ -68,32 +86,35 @@
 .headerMenus {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 1.75rem;
   min-width: 0;
+  justify-self: center;
   animation: chrome-enter 600ms var(--ease-out-soft) 60ms both;
 }
 
 .contact {
+  justify-self: end;
   animation: chrome-enter 600ms var(--ease-out-soft) 60ms both;
 }
 
 .filterBar {
   position: absolute;
   top: calc(100% + 12px);
-  left: max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2));
-  right: auto;
+  left: 50%;
   z-index: 4;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 12px;
   max-width: calc(
     100vw - 2 * max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2))
   );
   white-space: nowrap;
-  animation: filter-enter-left 400ms var(--ease-out-soft) both;
+  transform: translateX(-50%);
+  animation: filter-enter-center 400ms var(--ease-out-soft) both;
 }
 
 .filterTags {
@@ -214,6 +235,18 @@
   }
 }
 
+@keyframes filter-enter-center {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 .main {
   position: relative;
   z-index: 1;
@@ -246,6 +279,7 @@
 
 @media (max-width: 720px) {
   .header {
+    display: flex;
     flex-wrap: wrap;
     row-gap: 10px;
     column-gap: 1rem;
@@ -253,8 +287,18 @@
     align-items: center;
   }
 
+  .brand {
+    margin-right: auto;
+    justify-self: auto;
+  }
+
   .headerMenus {
+    justify-self: auto;
     gap: 1rem;
+  }
+
+  .contact {
+    justify-self: auto;
   }
 
   .filterBar {
@@ -266,9 +310,11 @@
     order: 10;
     width: 100%;
     max-width: 100%;
+    justify-content: flex-start;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    transform: none;
     animation: filter-enter-left 300ms var(--ease-out-soft) both;
   }
 
