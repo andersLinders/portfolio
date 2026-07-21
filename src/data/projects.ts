@@ -95,7 +95,10 @@ export const projects: Project[] = [
         image: "/images/meta-avatar-portrait.png",
         imagePosition: "center center",
         imagePositionMobile: "center 30%",
-        content: pageContent("Monetization"),
+        content: pageContent("Monetization", {
+          blurb:
+            "Systems that enable users to purchase in-game items and for creators to publish in-game items. Meta Credits were developed as a token that could be purchased for cash and exchanged for digital goods.",
+        }),
       },
       {
         id: "gamification",
@@ -105,6 +108,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 40%",
         content: pageContent("Gamification", {
+          blurb:
+            "Gamification systems rewarded users for spending time in the metaverse. Users were rewarded with points and digital goods from Meta as well as content creators. Meta points were introduced as an earnable token that could be exchanged for digital goods.",
           skills:
             "Gamification, Creator tools, live events, live ops, digital goods",
         }),
@@ -117,6 +122,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 35%",
         content: pageContent("Creator Tools", {
+          blurb:
+            "Economy tools were opened up to creators who were able to create digital goods and offer them for Meta Credits or in exchange for completing achievements or trading points.",
           surfaces: "VR, Mobile, Desktop",
           skills: "Creator tools, content publishing, live ops, monetization",
         }),
@@ -129,6 +136,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 35%",
         content: pageContent("Oculus TV", {
+          blurb:
+            "The primary source for experiencing the best immersive video content Oculus and Oculus creators had to offer. Featuring flat, 180, and 360 video.",
           surfaces: "VR",
           skills: "Media, spatial UI, entertainment, passthrough",
         }),
@@ -154,6 +163,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 30%",
         content: pageContent("Arc", {
+          blurb:
+            "The premier soundbar touting Dolby Atmos immersive sound as well as up to 7.1 surround sound and Alexa interactivity.",
           surfaces: "Hardware, Mobile, Desktop",
           skills: "Soundbar, home theater, product design",
         }),
@@ -166,6 +177,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 30%",
         content: pageContent("Beam", {
+          blurb:
+            "Entry-level soundbar delivering industry-leading sound quality and functionality. Included 5.1 surround, Amazon Alexa, and seamless integration with the Sonos connected home system.",
           surfaces: "Hardware, Mobile, Desktop",
           skills: "Compact soundbar, home theater, product design",
         }),
@@ -191,6 +204,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 35%",
         content: pageContent("Streaming + Live", {
+          blurb:
+            "First-ever launch of the Hulu streaming and live TV offering. Cloud recording and content saving allowed users to curate their favorite content and watch it at their leisure.",
           surfaces: "TV, Mobile, Desktop",
           skills: "Streaming, live TV, playback, discovery",
         }),
@@ -203,6 +218,8 @@ export const projects: Project[] = [
         imagePosition: "center center",
         imagePositionMobile: "center 35%",
         content: pageContent("Mobile", {
+          blurb:
+            "All of the brand-new features from Hulu TV included in the portable format so users can consume content on the go.",
           surfaces: "Mobile",
           skills: "Mobile streaming, content discovery, live",
         }),
@@ -216,6 +233,8 @@ export const projects: Project[] = [
     imagePosition: "center center",
     imagePositionMobile: "center 30%",
     content: pageContent("Core Products", {
+      blurb:
+        "A suite of web apps allowing scientists to 10x their productivity with a state-of-the-art data ingestion engine (Blueprint) and result generation (Reactor).",
       surfaces: "Desktop, Web",
       skills: "AI, enterprise, data visualization",
     }),
@@ -228,6 +247,8 @@ export const projects: Project[] = [
     imagePosition: "center center",
     imagePositionMobile: "center 30%",
     content: pageContent("Impact Challenge", {
+      blurb:
+        "Connecting some of the most important initiatives across the Bay Area with both attention and money. The site allowed users to allocate funds to their favorite nonprofits.",
       surfaces: "Web, Desktop",
       skills: "Web, civic tech, content systems",
     }),
@@ -240,6 +261,8 @@ export const projects: Project[] = [
     imagePosition: "center center",
     imagePositionMobile: "center 35%",
     content: pageContent("Marvel Avengers VR", {
+      blurb:
+        "Developed between Disney Marvel and Samsung Gear VR to give users never-before-seen immersion into an exclusive scene from the film Avengers: Age of Ultron.",
       surfaces: "VR",
       skills: "VR, spatial UI, headset experiences",
     }),
