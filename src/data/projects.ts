@@ -211,7 +211,7 @@ export const projects: Project[] = [
     imagePosition: "center center",
     imagePositionMobile: "center 35%",
     content: pageContent("Hulu", {
-      surfaces: "TV, Mobile, Desktop",
+      surfaces: "TV, Mobile",
       skills: "Streaming, live TV, content discovery",
     }),
     subItems: [
@@ -225,7 +225,7 @@ export const projects: Project[] = [
         content: pageContent("Streaming + Live", {
           blurb:
             "Hulu's streaming and live TV offering. Cloud recording and content saving allow users to curate their favorite content and watch it at their leisure.",
-          surfaces: "TV, Mobile, Desktop",
+          surfaces: "TV, Mobile",
           skills: "Streaming, live TV, playback, discovery",
         }),
       },
@@ -239,7 +239,7 @@ export const projects: Project[] = [
         content: pageContent("Mobile", {
           blurb:
             "All of the brand-new features from Hulu TV in a portable format so users can consume content on the go.",
-          surfaces: "Mobile",
+          surfaces: "Mobile, TV",
           skills: "Mobile streaming, content discovery, live",
         }),
       },
