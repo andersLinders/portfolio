@@ -250,6 +250,18 @@
   }
 }
 
+@keyframes filter-enter-left {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .main {
   position: relative;
   z-index: 1;
@@ -295,6 +307,8 @@
   }
 
   .headerMenus {
+    /* Let the open filter bar position against the header, not this cluster. */
+    position: static;
     flex-wrap: nowrap;
     justify-self: auto;
     gap: 1rem;
@@ -304,31 +318,39 @@
     justify-self: auto;
   }
 
-  /* Keep Brands/Platforms on the top row; open the menu below without reflow. */
+  /* Keep Brands/Platforms on the top row; open tags left-aligned with page edge. */
   .filterBar {
     position: absolute;
     top: 100%;
-    left: 50%;
-    right: auto;
-    width: max-content;
-    max-width: calc(
-      100vw - 2 * max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2))
-    );
+    left: max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2));
+    right: max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2));
+    width: auto;
+    max-width: none;
     justify-content: flex-start;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    margin-top: 12px;
-    transform: translateX(-50%);
-    animation: filter-enter-center 300ms var(--ease-out-soft) both;
+    margin-top: 0;
+    transform: none;
+    animation: filter-enter-left 300ms var(--ease-out-soft) both;
   }
 
   .filterBar::-webkit-scrollbar {
     display: none;
   }
 
+  .filterTags {
+    flex-shrink: 0;
+  }
+
   .filterTag {
+    flex-shrink: 0;
     padding: 5px 7px;
+  }
+
+  .clearFilters {
+    flex-shrink: 0;
   }
 
   .filterCount {
