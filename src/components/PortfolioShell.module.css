@@ -334,6 +334,7 @@
     width: auto;
     max-width: none;
     margin-top: 10px;
+    padding-bottom: 14px;
     transform: none;
     animation: filter-enter-left 300ms var(--ease-out-soft) both;
   }
@@ -350,6 +351,11 @@
 
   .headerSpacer {
     height: calc(var(--space-header-top) + 2.5rem);
+  }
+
+  /* Make room for the open filter row so it doesn’t sit on the intro. */
+  .headerSpacerFiltersOpen {
+    height: calc(var(--space-header-top) + 2.5rem + 3.25rem);
   }
 
   .main {
