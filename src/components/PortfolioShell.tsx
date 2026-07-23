@@ -271,7 +271,10 @@ export function PortfolioShell() {
           </div>
         ) : null}
       </header>
-      <div className={styles.headerSpacer} aria-hidden="true" />
+      <div
+        className={`${styles.headerSpacer} ${openMenu ? styles.headerSpacerFiltersOpen : ""}`}
+        aria-hidden="true"
+      />
 
       <IntroTypewriter />
 
