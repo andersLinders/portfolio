@@ -47,14 +47,16 @@
 }
 
 .company {
+  font-family: var(--font-sans);
   font-size: var(--font-company-size);
   font-weight: 300;
   color: var(--color-text);
 }
 
 .title {
+  font-family: var(--font-display);
   font-size: var(--font-title-size);
-  font-weight: 700;
+  font-weight: 300;
   color: var(--color-text-muted);
   line-height: normal;
 }
@@ -67,7 +69,7 @@
 
 .blurb {
   font-size: var(--font-blurb-size);
-  font-weight: 500;
+  font-weight: 300;
   color: var(--color-text-muted);
   line-height: 1.45;
   overflow-wrap: break-word;
@@ -89,7 +91,7 @@
   border: 1px solid var(--color-tag-border);
   border-radius: 33px;
   font-size: var(--font-tag-size);
-  font-weight: 500;
+  font-weight: 300;
   color: var(--color-text-muted);
   line-height: normal;
   white-space: nowrap;
@@ -118,6 +120,23 @@
   opacity: 0.9;
 }
 
+.mediaLink {
+  display: block;
+  width: 100%;
+  max-width: var(--section-hero-max-width);
+  border-radius: var(--section-image-radius);
+  transition: opacity 220ms var(--ease-out-soft);
+}
+
+.mediaLink:hover {
+  opacity: 0.92;
+}
+
+.mediaLink:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.45);
+  outline-offset: 6px;
+}
+
 .media {
   position: relative;
   width: 100%;
@@ -127,6 +146,10 @@
   border-radius: var(--section-image-radius);
   overflow: hidden;
   box-shadow: 0 0 32px 0 var(--color-image-shadow);
+}
+
+.mediaLink .media {
+  max-width: none;
 }
 
 .image {
@@ -147,6 +170,11 @@
   }
 
   .media {
+    order: 0;
+    max-width: none;
+  }
+
+  .mediaLink {
     order: 0;
     max-width: none;
   }

@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ContactModal } from "@/components/ContactModal";
+import { IntroTypewriter } from "@/components/IntroTypewriter";
 import { ProjectSection } from "@/components/ProjectSection";
 import {
   getAllBrands,
   getAllSurfaceTags,
   getPortfolioSections,
 } from "@/data/projects";
+import { atmosphereGlowsAt } from "@/lib/atmospherePalettes";
 import styles from "./PortfolioShell.module.css";
 
 const sections = getPortfolioSections();
@@ -24,6 +26,8 @@ export function PortfolioShell() {
   const [activeBrands, setActiveBrands] = useState<string[]>([]);
   const [navHidden, setNavHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const shellRef = useRef<HTMLDivElement>(null);
+  const glowFrame = useRef(0);
 
   const openContact = useCallback(() => {
     setContactOpen(true);
@@ -77,7 +81,26 @@ export function PortfolioShell() {
       document.body.scrollTop ||
       0;
 
+    const applyAtmosphere = (scrollY: number) => {
+      const shell = shellRef.current;
+      if (!shell) return;
+
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      if (reduced) return;
+
+      const maxScroll = Math.max(
+        1,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
+      const { a, b } = atmosphereGlowsAt(scrollY / maxScroll);
+      shell.style.setProperty("--glow-a", a);
+      shell.style.setProperty("--glow-b", b);
+    };
+
     lastScrollY.current = readScrollY();
+    applyAtmosphere(lastScrollY.current);
 
     const onScroll = () => {
       const currentY = readScrollY();
@@ -93,13 +116,21 @@ export function PortfolioShell() {
       }
 
       lastScrollY.current = currentY;
+
+      if (glowFrame.current) cancelAnimationFrame(glowFrame.current);
+      glowFrame.current = requestAnimationFrame(() => {
+        applyAtmosphere(currentY);
+      });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("scroll", onScroll, { capture: true });
+      window.removeEventListener("resize", onScroll);
+      if (glowFrame.current) cancelAnimationFrame(glowFrame.current);
     };
   }, []);
 
@@ -118,7 +149,7 @@ export function PortfolioShell() {
   const brandsActive = activeBrands.length > 0;
 
   return (
-    <div className={styles.shell}>
+    <div className={styles.shell} ref={shellRef}>
       <div className={styles.atmosphere} aria-hidden="true" />
 
       <header
@@ -158,6 +189,78 @@ export function PortfolioShell() {
               </span>
             ) : null}
           </button>
+
+          {openMenu === "brands" ? (
+            <div
+              id="portfolio-brands"
+              className={styles.filterBar}
+              role="group"
+              aria-label="Filter by brand"
+            >
+              <ul className={styles.filterTags}>
+                {allBrands.map((brand) => {
+                  const selected = activeBrands.includes(brand);
+                  return (
+                    <li key={brand}>
+                      <button
+                        type="button"
+                        className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
+                        aria-pressed={selected}
+                        onClick={() => toggleBrand(brand)}
+                      >
+                        {brand}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              {brandsActive ? (
+                <button
+                  type="button"
+                  className={styles.clearFilters}
+                  onClick={clearBrandFilters}
+                >
+                  Clear
+                </button>
+              ) : null}
+            </div>
+          ) : null}
+
+          {openMenu === "filter" ? (
+            <div
+              id="portfolio-filters"
+              className={styles.filterBar}
+              role="group"
+              aria-label="Filter by platform"
+            >
+              <ul className={styles.filterTags}>
+                {allTags.map((tag) => {
+                  const selected = activeFilters.includes(tag);
+                  return (
+                    <li key={tag}>
+                      <button
+                        type="button"
+                        className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
+                        aria-pressed={selected}
+                        onClick={() => toggleTag(tag)}
+                      >
+                        {tag}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              {filtersActive ? (
+                <button
+                  type="button"
+                  className={styles.clearFilters}
+                  onClick={clearSurfaceFilters}
+                >
+                  Clear
+                </button>
+              ) : null}
+            </div>
+          ) : null}
         </div>
 
         <button
@@ -167,80 +270,10 @@ export function PortfolioShell() {
         >
           Contact
         </button>
-
-        {openMenu === "brands" ? (
-          <div
-            id="portfolio-brands"
-            className={styles.filterBar}
-            role="group"
-            aria-label="Filter by brand"
-          >
-            <ul className={styles.filterTags}>
-              {allBrands.map((brand) => {
-                const selected = activeBrands.includes(brand);
-                return (
-                  <li key={brand}>
-                    <button
-                      type="button"
-                      className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
-                      aria-pressed={selected}
-                      onClick={() => toggleBrand(brand)}
-                    >
-                      {brand}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-            {brandsActive ? (
-              <button
-                type="button"
-                className={styles.clearFilters}
-                onClick={clearBrandFilters}
-              >
-                Clear
-              </button>
-            ) : null}
-          </div>
-        ) : null}
-
-        {openMenu === "filter" ? (
-          <div
-            id="portfolio-filters"
-            className={styles.filterBar}
-            role="group"
-            aria-label="Filter by platform"
-          >
-            <ul className={styles.filterTags}>
-              {allTags.map((tag) => {
-                const selected = activeFilters.includes(tag);
-                return (
-                  <li key={tag}>
-                    <button
-                      type="button"
-                      className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
-                      aria-pressed={selected}
-                      onClick={() => toggleTag(tag)}
-                    >
-                      {tag}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-            {filtersActive ? (
-              <button
-                type="button"
-                className={styles.clearFilters}
-                onClick={clearSurfaceFilters}
-              >
-                Clear
-              </button>
-            ) : null}
-          </div>
-        ) : null}
       </header>
       <div className={styles.headerSpacer} aria-hidden="true" />
+
+      <IntroTypewriter />
 
       <main className={styles.main}>
         {visibleSections.length > 0 ? (

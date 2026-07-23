@@ -15,6 +15,11 @@
   --font-title-size: 2rem;
   --font-blurb-size: 1.125rem;
   --font-tag-size: 1rem;
+  --font-display: Georgia, "Times New Roman", Times, serif;
+  --font-body: Georgia, "Times New Roman", Times, serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
   --section-image-radius: 32px;
   --section-text-width: 377px;
   --section-gap: clamp(2rem, 7vw, 8.75rem);
@@ -51,15 +56,8 @@ body {
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family:
-    var(--font-sans),
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

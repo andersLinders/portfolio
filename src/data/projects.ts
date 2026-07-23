@@ -21,6 +21,8 @@ export type ProjectSubItem = {
   image: string;
   imagePosition?: string;
   imagePositionMobile?: string;
+  /** Detail-page gallery: hero + two supporting frames. Falls back to `image`. */
+  gallery?: string[];
   content: PageContent;
 };
 
@@ -31,8 +33,25 @@ export type Project = {
   image: string;
   imagePosition?: string;
   imagePositionMobile?: string;
+  /** Used when the project has no sub-items (single case-study page). */
+  href?: string;
+  /** Detail-page gallery for single-page projects. Falls back to `image`. */
+  gallery?: string[];
   content: PageContent;
   subItems: ProjectSubItem[];
+};
+
+/** Resolved case-study page for `/work/[company]/[slug]`. */
+export type ProjectPageData = {
+  companyId: ProjectId;
+  company: string;
+  slug: string;
+  title: string;
+  blurb: string;
+  image: string;
+  imagePosition: string;
+  gallery: string[];
+  href: string;
 };
 
 export type BackgroundScene = {
@@ -89,15 +108,15 @@ export const projects: Project[] = [
     }),
     subItems: [
       {
-        id: "gamification",
-        label: "Gamification",
-        href: "/work/meta/gamification",
+        id: "core-loop",
+        label: "Core Loop",
+        href: "/work/meta/core-loop",
         image: "/images/meta-avatars.jpg",
         imagePosition: "center center",
         imagePositionMobile: "center 40%",
-        content: pageContent("Gamification", {
+        content: pageContent("Core Loop", {
           blurb:
-            "Gamification systems rewarded users for spending time in the metaverse. Users were rewarded with points and digital goods from Meta as well as content creators. Meta points were introduced as an earnable token that could be exchanged for digital goods.",
+            "Core loop systems reward users for spending time in the metaverse. Users are rewarded with points and digital goods from Meta as well as content creators. Meta points are an earnable token that can be exchanged for digital goods.",
           skills:
             "Gamification, Creator tools, live events, live ops, digital goods",
         }),
@@ -111,7 +130,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 30%",
         content: pageContent("Monetization", {
           blurb:
-            "Systems that enable users to purchase in-game items and for creators to publish in-game items. Meta Credits were developed as a token that could be purchased for cash and exchanged for digital goods.",
+            "Systems that enable users to purchase in-game items and for creators to publish in-game items. Meta Credits are a token that can be purchased for cash and exchanged for digital goods.",
         }),
       },
       {
@@ -123,7 +142,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 35%",
         content: pageContent("Creator Tools", {
           blurb:
-            "Economy tools were opened up to creators who were able to create digital goods and offer them for Meta Credits or in exchange for completing achievements or trading points.",
+            "Economy tools open up to creators who can create digital goods and offer them for Meta Credits or in exchange for completing achievements or trading points.",
           surfaces: "VR, Mobile, Desktop",
           skills: "Creator tools, content publishing, live ops, monetization",
         }),
@@ -137,7 +156,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 35%",
         content: pageContent("Oculus TV", {
           blurb:
-            "The primary source for experiencing the best immersive video content Oculus and Oculus creators had to offer. Featuring flat, 180, and 360 video.",
+            "The primary source for experiencing the best immersive video content Oculus and Oculus creators have to offer. Featuring flat, 180, and 360 video.",
           surfaces: "VR",
           skills: "Media, spatial UI, entertainment, passthrough",
         }),
@@ -178,7 +197,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 30%",
         content: pageContent("Beam", {
           blurb:
-            "Entry-level soundbar delivering industry-leading sound quality and functionality. Included 5.1 surround, Amazon Alexa, and seamless integration with the Sonos connected home system.",
+            "Entry-level soundbar delivering industry-leading sound quality and functionality. Includes 5.1 surround, Amazon Alexa, and seamless integration with the Sonos connected home system.",
           surfaces: "Hardware, Mobile, Desktop",
           skills: "Compact soundbar, home theater, product design",
         }),
@@ -205,7 +224,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 35%",
         content: pageContent("Streaming + Live", {
           blurb:
-            "First-ever launch of the Hulu streaming and live TV offering. Cloud recording and content saving allowed users to curate their favorite content and watch it at their leisure.",
+            "Hulu's streaming and live TV offering. Cloud recording and content saving allow users to curate their favorite content and watch it at their leisure.",
           surfaces: "TV, Mobile, Desktop",
           skills: "Streaming, live TV, playback, discovery",
         }),
@@ -219,7 +238,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 35%",
         content: pageContent("Mobile", {
           blurb:
-            "All of the brand-new features from Hulu TV included in the portable format so users can consume content on the go.",
+            "All of the brand-new features from Hulu TV in a portable format so users can consume content on the go.",
           surfaces: "Mobile",
           skills: "Mobile streaming, content discovery, live",
         }),
@@ -229,6 +248,7 @@ export const projects: Project[] = [
   {
     id: "noble-ai",
     label: "Noble.AI",
+    href: "/work/noble-ai/core-products",
     image: "/images/noble-ai.png",
     imagePosition: "center center",
     imagePositionMobile: "center 30%",
@@ -243,12 +263,13 @@ export const projects: Project[] = [
   {
     id: "google",
     label: "Google",
+    href: "/work/google/impact-challenge",
     image: "/images/google.png",
     imagePosition: "center center",
     imagePositionMobile: "center 30%",
     content: pageContent("Impact Challenge", {
       blurb:
-        "Connecting some of the most important initiatives across the Bay Area with both attention and money. The site allowed users to allocate funds to their favorite nonprofits.",
+        "Connecting some of the most important initiatives across the Bay Area with both attention and money. The site allows users to allocate funds to their favorite nonprofits.",
       surfaces: "Web, Desktop",
       skills: "Web, civic tech, content systems",
     }),
@@ -257,18 +278,35 @@ export const projects: Project[] = [
   {
     id: "samsung-vr",
     label: "Samsung",
+    href: "/work/samsung-vr/marvel-avengers-vr",
     image: "/images/samsung-vr.png",
     imagePosition: "center center",
     imagePositionMobile: "center 35%",
     content: pageContent("Marvel Avengers VR", {
       blurb:
-        "Developed between Disney Marvel and Samsung Gear VR to give users never-before-seen immersion into an exclusive scene from the film Avengers: Age of Ultron.",
+        "A collaboration between Disney Marvel and Samsung Gear VR that gives users never-before-seen immersion into an exclusive scene from the film Avengers: Age of Ultron.",
       surfaces: "VR",
       skills: "VR, spatial UI, headset experiences",
     }),
     subItems: [],
   },
 ];
+
+function slugFromHref(href: string): string {
+  const parts = href.split("/").filter(Boolean);
+  return parts[parts.length - 1] ?? "";
+}
+
+function resolveGallery(image: string, gallery?: string[]): string[] {
+  if (gallery && gallery.length > 0) {
+    const frames = [...gallery];
+    while (frames.length < 3) {
+      frames.push(frames[frames.length - 1] ?? image);
+    }
+    return frames.slice(0, 3);
+  }
+  return [image, image, image];
+}
 
 export const DEFAULT_PROJECT_ID: ProjectId = "meta";
 export const DEFAULT_SUB_ID: string | null = null;
@@ -365,11 +403,62 @@ export function getPortfolioSections(): PortfolioSection[] {
       tags: parseSurfaceTags(project.content.surfaces),
       image: project.image,
       imagePosition: project.imagePosition ?? "center center",
-      href: null,
+      href: project.href ?? null,
     });
   }
 
   return sections;
+}
+
+/** All case-study routes for static generation. */
+export function getAllProjectPages(): ProjectPageData[] {
+  const pages: ProjectPageData[] = [];
+
+  for (const project of projects) {
+    if (project.subItems.length > 0) {
+      for (const sub of project.subItems) {
+        pages.push({
+          companyId: project.id,
+          company: project.label,
+          slug: sub.id,
+          title: sub.label,
+          blurb: sub.content.blurb,
+          image: sub.image,
+          imagePosition: sub.imagePosition ?? "center center",
+          gallery: resolveGallery(sub.image, sub.gallery),
+          href: sub.href,
+        });
+      }
+      continue;
+    }
+
+    if (!project.href) continue;
+
+    pages.push({
+      companyId: project.id,
+      company: project.label,
+      slug: slugFromHref(project.href),
+      title: project.content.title,
+      blurb: project.content.blurb,
+      image: project.image,
+      imagePosition: project.imagePosition ?? "center center",
+      gallery: resolveGallery(project.image, project.gallery),
+      href: project.href,
+    });
+  }
+
+  return pages;
+}
+
+export function getProjectPage(
+  company: string,
+  slug: string,
+): ProjectPageData | null {
+  return (
+    getAllProjectPages().find(
+      (page) => page.companyId === company && page.slug === slug,
+    ) ?? null
+  );
 }
 
 /** Unique surface tags across all sections, stable order. */

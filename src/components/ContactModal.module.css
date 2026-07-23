@@ -47,8 +47,9 @@
 
 .greeting {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 18px;
   color: #000000;
 }
@@ -76,14 +77,14 @@
   display: block;
   font-size: 18px;
   line-height: 18px;
-  font-weight: 400;
+  font-weight: 300;
   transform: none;
 }
 
 .message {
   margin: 0;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.4;
   color: #000000;
 }
@@ -99,7 +100,7 @@
   background: #000000;
   color: #ffffff;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 300;
   line-height: normal;
   text-decoration: none;
   text-align: center;

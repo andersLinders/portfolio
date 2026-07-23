@@ -5,6 +5,8 @@
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-bg);
+  --glow-a: 80, 100, 255;
+  --glow-b: 0, 160, 255;
 }
 
 .atmosphere {
@@ -15,12 +17,22 @@
   background-image:
     radial-gradient(
       ellipse 55% 45% at 92% 8%,
-      rgba(246, 0, 255, 0.12),
+      rgba(var(--glow-a), 0.12),
       transparent 70%
     ),
     radial-gradient(
       ellipse 40% 35% at 6% 12%,
-      rgba(0, 128, 255, 0.1),
+      rgba(var(--glow-b), 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 8% 92%,
+      rgba(var(--glow-a), 0.11),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 42% at 94% 90%,
+      rgba(var(--glow-b), 0.1),
       transparent 70%
     );
 }
@@ -40,12 +52,12 @@
   background-image:
     radial-gradient(
       ellipse 55% 45% at 92% 8%,
-      rgba(246, 0, 255, 0.12),
+      rgba(var(--glow-a), 0.12),
       transparent 70%
     ),
     radial-gradient(
       ellipse 40% 35% at 6% 12%,
-      rgba(0, 128, 255, 0.1),
+      rgba(var(--glow-b), 0.1),
       transparent 70%
     );
   /* Match the fixed atmosphere slice at the top of the viewport.
@@ -75,8 +87,9 @@
 
 .brand {
   justify-self: start;
+  font-family: var(--font-display);
   font-size: var(--font-brand-size);
-  font-weight: 700;
+  font-weight: 300;
   line-height: normal;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -84,6 +97,7 @@
 }
 
 .headerMenus {
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -100,7 +114,7 @@
 
 .filterBar {
   position: absolute;
-  top: calc(100% + 12px);
+  top: 100%;
   left: 50%;
   z-index: 4;
   display: flex;
@@ -109,6 +123,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  margin-top: 16pt;
   max-width: calc(
     100vw - 2 * max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2))
   );
@@ -130,7 +145,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: var(--font-contact-size);
-  font-weight: 700;
+  font-weight: 300;
   line-height: normal;
   white-space: nowrap;
 }
@@ -163,7 +178,7 @@
   background: var(--color-text);
   color: var(--color-bg);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1;
 }
 
@@ -175,7 +190,7 @@
   border: 1px solid var(--color-tag-border);
   border-radius: 33px;
   font-size: var(--font-tag-size);
-  font-weight: 500;
+  font-weight: 300;
   color: var(--color-text-muted);
   line-height: normal;
   white-space: nowrap;
@@ -201,7 +216,7 @@
 
 .clearFilters {
   font-size: var(--font-tag-size);
-  font-weight: 500;
+  font-weight: 300;
   color: var(--color-text-muted);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -254,7 +269,7 @@
   flex-direction: column;
   gap: var(--space-section-gap);
   padding:
-    var(--space-section-start)
+    clamp(3rem, 6vw, 5rem)
     max(var(--space-content-x), calc((100vw - var(--layout-max-width)) / 2))
     calc(var(--space-section-gap) + 2rem);
 }
@@ -265,13 +280,13 @@
   align-items: baseline;
   gap: 0.75rem 1rem;
   font-size: var(--font-blurb-size);
-  font-weight: 500;
+  font-weight: 300;
   color: var(--color-text-muted);
 }
 
 .emptyClear {
   font-size: inherit;
-  font-weight: 700;
+  font-weight: 300;
   color: var(--color-text);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -293,6 +308,7 @@
   }
 
   .headerMenus {
+    flex-wrap: wrap;
     justify-self: auto;
     gap: 1rem;
   }
