@@ -189,78 +189,6 @@ export function PortfolioShell() {
               </span>
             ) : null}
           </button>
-
-          {openMenu === "brands" ? (
-            <div
-              id="portfolio-brands"
-              className={styles.filterBar}
-              role="group"
-              aria-label="Filter by brand"
-            >
-              <ul className={styles.filterTags}>
-                {allBrands.map((brand) => {
-                  const selected = activeBrands.includes(brand);
-                  return (
-                    <li key={brand}>
-                      <button
-                        type="button"
-                        className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
-                        aria-pressed={selected}
-                        onClick={() => toggleBrand(brand)}
-                      >
-                        {brand}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-              {brandsActive ? (
-                <button
-                  type="button"
-                  className={styles.clearFilters}
-                  onClick={clearBrandFilters}
-                >
-                  Clear
-                </button>
-              ) : null}
-            </div>
-          ) : null}
-
-          {openMenu === "filter" ? (
-            <div
-              id="portfolio-filters"
-              className={styles.filterBar}
-              role="group"
-              aria-label="Filter by platform"
-            >
-              <ul className={styles.filterTags}>
-                {allTags.map((tag) => {
-                  const selected = activeFilters.includes(tag);
-                  return (
-                    <li key={tag}>
-                      <button
-                        type="button"
-                        className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
-                        aria-pressed={selected}
-                        onClick={() => toggleTag(tag)}
-                      >
-                        {tag}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-              {filtersActive ? (
-                <button
-                  type="button"
-                  className={styles.clearFilters}
-                  onClick={clearSurfaceFilters}
-                >
-                  Clear
-                </button>
-              ) : null}
-            </div>
-          ) : null}
         </div>
 
         <button
@@ -270,6 +198,78 @@ export function PortfolioShell() {
         >
           Contact
         </button>
+
+        {openMenu === "brands" ? (
+          <div
+            id="portfolio-brands"
+            className={styles.filterBar}
+            role="group"
+            aria-label="Filter by brand"
+          >
+            <ul className={styles.filterTags}>
+              {allBrands.map((brand) => {
+                const selected = activeBrands.includes(brand);
+                return (
+                  <li key={brand}>
+                    <button
+                      type="button"
+                      className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
+                      aria-pressed={selected}
+                      onClick={() => toggleBrand(brand)}
+                    >
+                      {brand}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            {brandsActive ? (
+              <button
+                type="button"
+                className={styles.clearFilters}
+                onClick={clearBrandFilters}
+              >
+                Clear
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+
+        {openMenu === "filter" ? (
+          <div
+            id="portfolio-filters"
+            className={styles.filterBar}
+            role="group"
+            aria-label="Filter by platform"
+          >
+            <ul className={styles.filterTags}>
+              {allTags.map((tag) => {
+                const selected = activeFilters.includes(tag);
+                return (
+                  <li key={tag}>
+                    <button
+                      type="button"
+                      className={`${styles.filterTag} ${selected ? styles.filterTagSelected : ""}`}
+                      aria-pressed={selected}
+                      onClick={() => toggleTag(tag)}
+                    >
+                      {tag}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            {filtersActive ? (
+              <button
+                type="button"
+                className={styles.clearFilters}
+                onClick={clearSurfaceFilters}
+              >
+                Clear
+              </button>
+            ) : null}
+          </div>
+        ) : null}
       </header>
       <div className={styles.headerSpacer} aria-hidden="true" />
 
