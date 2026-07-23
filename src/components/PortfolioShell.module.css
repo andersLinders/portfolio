@@ -295,8 +295,7 @@
 @media (max-width: 720px) {
   .header {
     display: flex;
-    flex-wrap: wrap;
-    row-gap: 10px;
+    flex-wrap: nowrap;
     column-gap: 1rem;
     padding-bottom: 0.75rem;
     align-items: center;
@@ -308,7 +307,7 @@
   }
 
   .headerMenus {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-self: auto;
     gap: 1rem;
   }
@@ -317,21 +316,23 @@
     justify-self: auto;
   }
 
+  /* Keep Brands/Platforms on the top row; open the menu below without reflow. */
   .filterBar {
-    position: static;
-    top: auto;
-    left: auto;
+    position: absolute;
+    top: 100%;
+    left: 50%;
     right: auto;
-    flex: 1 1 100%;
-    order: 10;
-    width: 100%;
-    max-width: 100%;
+    width: max-content;
+    max-width: calc(
+      100vw - 2 * max(var(--space-page-x), calc((100vw - var(--layout-max-width)) / 2))
+    );
     justify-content: flex-start;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    transform: none;
-    animation: filter-enter-left 300ms var(--ease-out-soft) both;
+    margin-top: 12px;
+    transform: translateX(-50%);
+    animation: filter-enter-center 300ms var(--ease-out-soft) both;
   }
 
   .filterBar::-webkit-scrollbar {
