@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+
+const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://andrewlindley.com"),
@@ -36,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
+      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
