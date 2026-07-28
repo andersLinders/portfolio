@@ -206,7 +206,7 @@ export const projects: Project[] = [
         caseStudyKey: "sonos-beam",
         content: pageContent("Beam", {
           blurb:
-            "Five years after the number-one-selling Playbar, Sonos evolves home theater again with a powerful, affordable, voice-enabled soundbar. Lead UX across hardware, setup, and living-room voice.",
+            "Five years after the number-one-selling Playbar, Sonos evolves home theater again with a powerful, affordable, voice-enabled soundbar.",
           surfaces: "Hardware, Mobile, Desktop",
           skills: "Compact soundbar, home theater, product design",
         }),
