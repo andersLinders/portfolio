@@ -23,6 +23,8 @@ export type ProjectSubItem = {
   imagePositionMobile?: string;
   /** Detail-page gallery: hero + two supporting frames. Falls back to `image`. */
   gallery?: string[];
+  /** Key into caseStudies registry, e.g. "sonos-beam". */
+  caseStudyKey?: string;
   content: PageContent;
 };
 
@@ -52,6 +54,7 @@ export type ProjectPageData = {
   imagePosition: string;
   gallery: string[];
   href: string;
+  caseStudyKey?: string;
 };
 
 export type BackgroundScene = {
@@ -108,6 +111,18 @@ export const projects: Project[] = [
     }),
     subItems: [
       {
+        id: "economy-systems",
+        label: "Economy Systems",
+        href: "/work/meta/economy-systems",
+        image: "/images/meta-avatar-portrait.png",
+        imagePosition: "center center",
+        imagePositionMobile: "center 30%",
+        content: pageContent("Economy Systems", {
+          blurb:
+            "A series of features that enable users to purchase digital goods such as avatar clothing and accessories, in game items and power ups. These economy systems are powered by meta credits which are a token that can be purchased for cash and exchanged for digital goods.",
+        }),
+      },
+      {
         id: "core-loop",
         label: "Core Loop",
         href: "/work/meta/core-loop",
@@ -122,18 +137,6 @@ export const projects: Project[] = [
         }),
       },
       {
-        id: "monetization",
-        label: "Monetization",
-        href: "/work/meta/monetization",
-        image: "/images/meta-avatar-portrait.png",
-        imagePosition: "center center",
-        imagePositionMobile: "center 30%",
-        content: pageContent("Monetization", {
-          blurb:
-            "Systems that enable users to purchase in-game items and for creators to publish in-game items. Meta Credits are a token that can be purchased for cash and exchanged for digital goods.",
-        }),
-      },
-      {
         id: "creator-tools",
         label: "Creator Tools",
         href: "/work/meta/creator-tools",
@@ -142,7 +145,7 @@ export const projects: Project[] = [
         imagePositionMobile: "center 35%",
         content: pageContent("Creator Tools", {
           blurb:
-            "Economy tools open up to creators who can create digital goods and offer them for Meta Credits or in exchange for completing achievements or trading points.",
+            "A series of tools that allow creators to develop and distribute digital goods. These goods are sold across metaverse platforms for Meta Credits or Cash.",
           surfaces: "VR, Mobile, Desktop",
           skills: "Creator tools, content publishing, live ops, monetization",
         }),
@@ -195,9 +198,15 @@ export const projects: Project[] = [
         image: "/images/sonos-beam.png",
         imagePosition: "center center",
         imagePositionMobile: "center 30%",
+        gallery: [
+          "/images/sonos-beam/lifestyle-living.png",
+          "/images/sonos-beam.png",
+          "/images/sonos-beam/tabletop-black.jpg",
+        ],
+        caseStudyKey: "sonos-beam",
         content: pageContent("Beam", {
           blurb:
-            "Entry-level soundbar delivering industry-leading sound quality and functionality. Includes 5.1 surround, Amazon Alexa, and seamless integration with the Sonos connected home system.",
+            "Five years after the number-one-selling Playbar, Sonos evolves home theater again with a powerful, affordable, voice-enabled soundbar. Lead UX across hardware, setup, and living-room voice.",
           surfaces: "Hardware, Mobile, Desktop",
           skills: "Compact soundbar, home theater, product design",
         }),
@@ -427,6 +436,7 @@ export function getAllProjectPages(): ProjectPageData[] {
           imagePosition: sub.imagePosition ?? "center center",
           gallery: resolveGallery(sub.image, sub.gallery),
           href: sub.href,
+          caseStudyKey: sub.caseStudyKey,
         });
       }
       continue;
