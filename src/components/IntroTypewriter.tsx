@@ -11,7 +11,6 @@ const START_DELAY_MS = 400;
 
 export function IntroTypewriter() {
   const [text, setText] = useState("");
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const reduced =
@@ -20,7 +19,6 @@ export function IntroTypewriter() {
 
     if (reduced) {
       setText(MESSAGE);
-      setDone(true);
       return;
     }
 
@@ -32,7 +30,6 @@ export function IntroTypewriter() {
         setText(MESSAGE.slice(0, index));
         if (index >= MESSAGE.length) {
           window.clearInterval(intervalId);
-          setDone(true);
         }
       }, CHAR_MS);
     }, START_DELAY_MS);
@@ -45,11 +42,7 @@ export function IntroTypewriter() {
 
   return (
     <p className={styles.intro} aria-live="polite">
-      <span>{text}</span>
-      <span
-        className={`${styles.caret} ${done ? styles.caretIdle : ""}`}
-        aria-hidden="true"
-      />
+      {text}
     </p>
   );
 }
